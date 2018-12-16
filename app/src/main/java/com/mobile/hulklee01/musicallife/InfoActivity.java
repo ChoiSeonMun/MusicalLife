@@ -31,28 +31,24 @@ public class InfoActivity extends AppCompatActivity {
         reservepath = "http://ticket.interpark.com/Ticket/Goods/GoodsInfo.asp?GoodsCode=18012338";
         morepath = "http://www.playdb.co.kr/playdb/playdbDetail.asp?sReqPlayno=131089";
 
-        /*
+
         Intent intent = getIntent();
 
         String date = intent.getStringExtra("date");
         String title =intent.getStringExtra("title");
         String place = intent.getStringExtra("place");
 
+        mtitleinfo = (TextView)findViewById(R.id.title_info);
         mtitleinfo.setText(title);
+
+        mTextSimple = (TextView)findViewById(R.id.textview_simpleinfo);
         mTextSimple.setText(
                 "\n일시 : " + date +
                 "\n장소 : " + place +
                 "\n출연 : 김땡땡, 최땡땡");
-        mTextInfo.setText("내용");
-        */
-        mtitleinfo = (TextView)findViewById(R.id.title_info);
-        mtitleinfo.setText("Title");
 
         mTextInfo = (TextView)findViewById(R.id.textview_info);
-        mTextInfo.setText("info");
-
-        mTextSimple = (TextView)findViewById(R.id.textview_simpleinfo);
-        mTextSimple.setText("simpleinfo");
+        mTextInfo.setText("내용");
     }
 
     public void onClick(View v){
