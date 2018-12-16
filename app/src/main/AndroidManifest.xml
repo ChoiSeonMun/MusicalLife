@@ -18,6 +18,9 @@
         </activity>
         <activity android:name=".InfoActivity" />
         <activity android:name=".CalendarActivity"></activity>
+
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
