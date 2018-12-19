@@ -34,6 +34,10 @@ public class FeederActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feeder_listview);
 
+        // 크롤링 시작
+        Intent intent = new Intent(this, CrawlingService.class);
+        startService(intent);
+
         mDbOpenHelper = new DBHelper(this);
         try {
             mDbOpenHelper.open();
@@ -45,7 +49,6 @@ public class FeederActivity extends AppCompatActivity {
         mDbOpenHelper.insertColumn(elizabeth, "엘리자벳", "블루스퀘어 인터파크홀(구 삼성전자홀)", "2018/11/17 ~ 2019/02/10","","","","",0);
         // feederAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.cuza), "태양의 서커스 - 쿠자", "잠실종합운동장 내 빅탑", "2018/11/03 ~ 2019/01/06");
         items = new ArrayList<>();
-
 
 
         feederAdapter = new FeederListViewAdapter(getApplicationContext(), R.layout.activity_feeder, items);
