@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <com.mobile.hulklee01.musicallife.CalendarRectangleView
+        android:id="@+id/view_rect"
+        android:layout_width="45dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="5dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:text="뮤지컬 엘리자벳"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/textView_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/textView_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:focusable="false"
+            android:text="2018.11.17 - 2019.02.10"
+            android:textSize="13dp" />
+    </LinearLayout>
+</LinearLayout>
