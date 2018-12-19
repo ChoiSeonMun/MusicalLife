@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 public class FeederListViewAdapter extends ArrayAdapter {
@@ -62,8 +62,10 @@ public class FeederListViewAdapter extends ArrayAdapter {
         FeederListViewItem feederListViewItem = feederList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-
-        musicalImageView.setImageDrawable(feederListViewItem.getMusicalImage());
+        byte[] image = feederListViewItem.getMusicalImage();
+        ByteArrayInputStream is = new ByteArrayInputStream(image);
+        Drawable drw = Drawable.createFromStream(is, "image");
+        musicalImageView.setImageDrawable(drw);
         titleTextView.setText(feederListViewItem.getMusicalTitle());
         placeTextView.setText(feederListViewItem.getMusicalPlace());
         dateTextView.setText(feederListViewItem.getMusicalDate());
@@ -85,7 +87,7 @@ public class FeederListViewAdapter extends ArrayAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable icon, String title, String location, String date) {
+    public void addItem(byte[] icon, String title, String location, String date) {
         FeederListViewItem item = new FeederListViewItem();
 
         item.setMusicalImage(icon);
