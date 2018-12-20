@@ -12,6 +12,7 @@ public class MusicalDB {
         public static final String INFORMATION = "infomation";
         public static final String PLAYTIME = "playtime";
         public static final String BOOKINGSITE = "bookingSite";
+        public static final String URL = "url";
         public static final String SUBSCRIBE = "subscribe";
     }
 
@@ -24,6 +25,7 @@ public class MusicalDB {
         public String Information;
         public int Playtime;
         public String BookingSite;
+        public String Url;
         public int Subscribe;
     }
 
@@ -38,6 +40,7 @@ public class MusicalDB {
                 + Columns.INFORMATION + " text not null , "
                 + Columns.PLAYTIME + " int not null , "
                 + Columns.BOOKINGSITE + " text not null , "
+                + Columns.URL + " text not null "
                 + Columns.SUBSCRIBE + " integer not null );";
     }
 }

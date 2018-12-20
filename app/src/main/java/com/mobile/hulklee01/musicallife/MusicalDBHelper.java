@@ -126,6 +126,14 @@ public class MusicalDBHelper {
         return bookingSite;
     }
 
+    public String getUrl(long id) {
+        Cursor c = mDB.query(MusicalDB._TABLENAME,
+                new String[]{ MusicalDB.Columns.URL},
+                null,null,null,null,null);
+        String url = c.getColumnName((int) id);
+        return url;
+    }
+
     public int getPlaytime(long id) {
          Cursor c = mDB.query(MusicalDB._TABLENAME,
                  new String[] { MusicalDB.Columns.PLAYTIME },
@@ -191,6 +199,11 @@ public class MusicalDBHelper {
             return this;
         }
 
+        public InsertHelper url(String url) {
+            col.Url = url;
+            return this;
+        }
+
         public long done() {
             ContentValues values = new ContentValues();
             values.put(MusicalDB.Columns.IMAGE, col.Image);
@@ -201,6 +214,7 @@ public class MusicalDBHelper {
             values.put(MusicalDB.Columns.INFORMATION, col.Information);
             values.put(MusicalDB.Columns.PLAYTIME, col.Playtime);
             values.put(MusicalDB.Columns.BOOKINGSITE, col.BookingSite);
+            values.put(MusicalDB.Columns.URL, col.Url);
             values.put(MusicalDB.Columns.SUBSCRIBE, col.Subscribe);
             return mDB.insert(MusicalDB._TABLENAME, null, values);
         }
