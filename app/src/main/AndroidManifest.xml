@@ -14,7 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".FeederActivity"/>
         <activity android:name=".InfoActivity" />
-        <activity android:name=".CalendarActivity" />
+
         <service
             android:name=".CrawlingService"
             android:exported="false" />
