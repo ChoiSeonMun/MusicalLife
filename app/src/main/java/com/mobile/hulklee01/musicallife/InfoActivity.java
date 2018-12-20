@@ -38,7 +38,7 @@ public class InfoActivity extends AppCompatActivity {
         //값 받아오기
         Intent intent = getIntent();
 
-        int id = intent.getIntExtra("id", 1);
+        int id = intent.getIntExtra("id", 2);
         String title = helper.getTitle(id);
         reservepath = helper.getBookingSite(id);
         //morepath = helper.?;
@@ -84,7 +84,11 @@ public class InfoActivity extends AppCompatActivity {
     }
     //구독
     public void SubClick(View view) {
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("id", 1);
+        int subs = helper.getSubs(id);
         boolean on = ((ToggleButton) view).isChecked();
+
         if (on) {
             Toast.makeText(getApplicationContext(), "Sub",
                     Toast.LENGTH_SHORT).show();
