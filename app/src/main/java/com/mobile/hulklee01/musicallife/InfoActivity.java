@@ -38,7 +38,7 @@ public class InfoActivity extends AppCompatActivity {
         //값 받아오기
         Intent intent = getIntent();
 
-        int id = intent.getIntExtra("id");
+        int id = intent.getIntExtra("id", 1);
         String title = helper.getTitle(id);
         reservepath = helper.getBookingSite(id);
         //morepath = helper.?;

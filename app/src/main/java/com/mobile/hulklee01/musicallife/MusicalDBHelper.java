@@ -142,6 +142,14 @@ public class MusicalDBHelper {
          return Integer.parseInt(playtime);
     }
 
+    public int getSubs(long id){
+        Cursor c = mDB.query(MusicalDB._TABLENAME,
+                new String[] { MusicalDB.Columns.SUBSCRIBE },
+                null, null, null, null, null);
+        String subs = c.getColumnName((int) id);
+        return Integer.parseInt(subs);
+    }
+
     public int getNumberOfSubs() {
         Cursor c = mDB.query(MusicalDB._TABLENAME,
                 new String[] { MusicalDB.Columns.SUBSCRIBE },
