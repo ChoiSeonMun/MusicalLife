@@ -55,9 +55,6 @@ public class FeederListViewAdapter extends ArrayAdapter {
         TextView titleTextView = (TextView) convertView.findViewById(R.id.muscial_title);
         TextView placeTextView = (TextView) convertView.findViewById(R.id.muscial_place);
         TextView dateTextView = (TextView) convertView.findViewById(R.id.musical_date);
-        ToggleButton subButton = (ToggleButton) convertView.findViewById(R.id.musical_subscribe_button);
-
-
 
         // 아이템 내 각 위젯에 데이터 반영
         MusicalInfo item = mList.get(position);
@@ -65,7 +62,6 @@ public class FeederListViewAdapter extends ArrayAdapter {
         titleTextView.setText(item.Title);
         placeTextView.setText(item.Location);
         dateTextView.setText(item.Duration);
-        //subButton.setTag(feederListViewItem.getMusicalTitle());
 
         return convertView;
     }
