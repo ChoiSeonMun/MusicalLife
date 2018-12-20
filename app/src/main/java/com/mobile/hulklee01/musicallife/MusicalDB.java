@@ -9,14 +9,14 @@ public class MusicalDB {
         public static final String LOCATION = "location";
         public static final String DURATION = "duration";
         public static final String RATING = "rating";
-        public static final String INFORMATION = "infomation";
+        public static final String INFORMATION = "information";
         public static final String PLAYTIME = "playtime";
-        public static final String BOOKINGSITE = "bookingSite";
+        public static final String BOOKINGSITE = "bookingsite";
         public static final String URL = "url";
         public static final String SUBSCRIBE = "subscribe";
     }
 
-    public class ColumnsClass {
+    public static class ColumnsClass {
         public String Image;
         public String Title;
         public String Location;
@@ -29,9 +29,9 @@ public class MusicalDB {
         public int Subscribe;
     }
 
-    public static final class CreateDB {
-        public static final String _CREATE = "create table " + _TABLENAME + "("
-                + Columns.ID + " integer not null primary key autoincrement, "
+    public static final class SQL {
+        public static final String CREATE = "create table " + _TABLENAME + " ("
+                + Columns.ID + " integer primary key autoincrement, "
                 + Columns.IMAGE + " text not null , "
                 + Columns.TITLE + " text not null , "
                 + Columns.LOCATION + " text not null , "
@@ -40,7 +40,8 @@ public class MusicalDB {
                 + Columns.INFORMATION + " text not null , "
                 + Columns.PLAYTIME + " int not null , "
                 + Columns.BOOKINGSITE + " text not null , "
-                + Columns.URL + " text not null "
+                + Columns.URL + " text not null ,  "
                 + Columns.SUBSCRIBE + " integer not null );";
+
     }
 }

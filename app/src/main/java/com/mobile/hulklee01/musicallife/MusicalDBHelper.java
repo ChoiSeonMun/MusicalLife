@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Parcelable;
+
+import com.mobile.hulklee01.musicallife.MusicalDB.ColumnsClass;
 
 public class MusicalDBHelper {
     private static final String DATABASE_NAME = "Musical.db";
@@ -25,8 +28,7 @@ public class MusicalDBHelper {
         // 최초 DB를 만들때 한번만 호출된다.
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL(MusicalDB.CreateDB._CREATE);
-
+            db.execSQL(MusicalDB.SQL.CREATE);
         }
 
         // 버전이 업데이트 되었을 경우 DB를 다시 만들어 준다.
@@ -150,7 +152,7 @@ public class MusicalDBHelper {
     }
 
     public class InsertHelper {
-        private MusicalDB.ColumnsClass col;
+        private ColumnsClass col = new ColumnsClass();
 
         public InsertHelper image(String img) {
             col.Image = img;
