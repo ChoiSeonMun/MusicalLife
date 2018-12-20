@@ -60,7 +60,7 @@
             android:textSize="20sp"/>
 
         <ScrollView
-            android:layout_height="250dp"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:paddingStart="10dp"
             android:paddingEnd="10dp">
@@ -75,25 +75,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:gravity="bottom"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_weight="1"
                 android:id="@+id/button_more"
                 android:text="상세정보"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:textSize="20sp"
                 android:onClick="onClick"/>
 
             <Button
                 android:layout_weight="1"
-                android:text="예약"
+                android:text="예매"
+                android:textSize="20sp"
                 android:id="@+id/button_reserve"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:onClick="onClick"/>
