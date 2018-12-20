@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class FeederActivity extends AppCompatActivity {
     private static final String TAG = "FeederActivity";
-    private DBHelper mDbOpenHelper;
+    private MusicalDBHelper mDbOpenHelper;
     private FeederListViewItem listViewItem;
     private Cursor mCursor;
     private ListView feeder;
@@ -38,7 +38,7 @@ public class FeederActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CrawlingService.class);
         startService(intent);
 
-        mDbOpenHelper = new DBHelper(this);
+        mDbOpenHelper = new MusicalDBHelper(this);
         try {
             mDbOpenHelper.open();
         } catch (SQLException e) {
