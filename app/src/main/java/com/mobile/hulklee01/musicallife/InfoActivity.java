@@ -45,7 +45,7 @@ public class InfoActivity extends AppCompatActivity {
 
         mTitle.setText(mMusicalInfo.Title);
         Glide.with(this).load(mMusicalInfo.Image).into(mImage);
-        String simpleInfo = String.format("일시 : %s\n 장소 : %s\n + 관람등급 : %s\n 관람시간 : %s분\n",
+        String simpleInfo = String.format("일시 : %s\n장소 : %s\n관람등급 : %s\n관람시간 : %s분\n",
                 mMusicalInfo.Duration, mMusicalInfo.Location, mMusicalInfo.Rating, mMusicalInfo.Playtime);
         mSimpleInfo.setText(simpleInfo);
         mDetailInfo.setText(mMusicalInfo.Information);

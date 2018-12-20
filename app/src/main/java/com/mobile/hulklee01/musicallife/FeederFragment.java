@@ -18,6 +18,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -33,6 +36,7 @@ public class FeederFragment extends Fragment {
 
     private FeederListViewAdapter mAdapter;
     private ArrayList<MusicalInfo> mInfos = ListManager.getList();
+    private int mListIdx = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,21 +84,48 @@ public class FeederFragment extends Fragment {
             }
         });
 
-        CrawlingTask crawlingTask = new CrawlingTask();
-        MusicalInfo[] musicalInfoArr = new MusicalInfo[mInfos.size()];
-        musicalInfoArr = mInfos.toArray(musicalInfoArr);
-        crawlingTask.execute(musicalInfoArr);
+        // RefreshListener를 추가한다.
+        SwipyRefreshLayout refreshLayout = (SwipyRefreshLayout) feederFragment.findViewById(R.id.refresh_layout);
+        refreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh(SwipyRefreshLayoutDirection direction) {
+                Thread thread = new Thread(() -> {
+                    crawlPage();
+                    crawlAsync();
+                });
+                thread.start();
+
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                refreshLayout.setRefreshing(false);
+            }
+        });
+
+        crawlAsync();
 
         return feederFragment;
     }
 
-    public void crawlPage() {
+    private void crawlAsync() {
+        // 나머지 데이터를 비동기적으로 크롤링한다.
+        CrawlingTask crawlingTask = new CrawlingTask();
+        MusicalInfo[] musicalInfoArr = new MusicalInfo[mInfos.size()];
+        musicalInfoArr = mInfos.toArray(musicalInfoArr);
+        crawlingTask.execute(musicalInfoArr);
+    }
+
+    private void crawlPage() {
         // 페이지에서 Url을 따온다.
         Document doc;
         Elements elements;
         try {
             doc = Jsoup.connect(PLAYDB_URL + mPage).get();
             elements = doc.getElementsByAttribute("onClick");
+            elements.remove(1); // for
             for (Element e : elements) {
                 if (e.is("a") == false) {
                     continue;
@@ -173,10 +204,17 @@ public class FeederFragment extends Fragment {
     private class CrawlingTask extends AsyncTask<MusicalInfo, Integer, Long> {
         @Override
         protected Long doInBackground(MusicalInfo... musicalInfos) {
-            for (MusicalInfo info : musicalInfos) {
+            for (; mListIdx < musicalInfos.length; ++mListIdx) {
+                MusicalInfo info = musicalInfos[mListIdx];
                 crawlMusical(info);
+                publishProgress();
             }
             return 1L;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            mAdapter.notifyDataSetChanged();
         }
 
         @Override
