@@ -10,7 +10,7 @@ public class MusicalDB {
         public static final String IMAGE = "image";
         public static final String TITLE = "title";
         public static final String LOCATION = "location";
-        public static final String DATE = "date";
+        public static final String DURATION = "duration";
         public static final String ACTOR = "actor";
         public static final String INFORMATION = "infomation";
         public static final String BOOKINGSITE = "bookingSite";
@@ -21,7 +21,7 @@ public class MusicalDB {
                 + IMAGE + " text not null , "
                 + TITLE + " text not null , "
                 + LOCATION + " text not null , "
-                + DATE + " text not null , "
+                + DURATION + " text not null , "
                 + ACTOR + " text not null , "
                 + INFORMATION + " text not null , "
                 + BOOKINGSITE + " text not null , "

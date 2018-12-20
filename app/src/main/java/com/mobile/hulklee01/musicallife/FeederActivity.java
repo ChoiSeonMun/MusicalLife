@@ -44,9 +44,6 @@ public class FeederActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        String elizabeth = "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/18/09/0400011809_131089_0455.gif";
-        //임의로 넣은 값
-        mDbOpenHelper.insertColumn(elizabeth, "엘리자벳", "블루스퀘어 인터파크홀(구 삼성전자홀)", "2018/11/17 ~ 2019/02/10","","","",0);
 
         items = new ArrayList<>();
 

@@ -2,6 +2,7 @@ package com.mobile.hulklee01.musicallife;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -50,11 +51,9 @@ public class CrawlingService extends IntentService {
             e.printStackTrace();
         }
 
-        String s = mUrls.get(0);
-        crawl(s);
-        //for (String s : mUrls) {
-        //    crawl(s);
-        //}
+        for (String s : mUrls) {
+            crawl(s);
+        }
     }
 
     private void crawl(String url) {
@@ -64,22 +63,26 @@ public class CrawlingService extends IntentService {
         try {
             Document doc = Jsoup.connect(url).get();
 
-            // Build
-            c.url(url);
-            c.title(doc.getElementsByClass("title").first().text());
+            // Parse
+            String title = doc.getElementsByClass("title").first().text();
 
-            Elements detailList = doc.getElementsByClass("detaillist");
+            Element pdDetail = doc.getElementsByClass("pddetail").first();
+            String image = pdDetail.select("h2 > img").attr("src");
 
+
+            Element detailList = pdDetail.getElementsByClass("detaillist").first();
             Elements table = detailList.select("table");
             Elements trs = table.select("tr");
 
-            c.duration(trs.get(1).text());
-            c.location(trs.get(2).text());
-            c.actors(trs.get(3).text());
-            c.playtime(trs.get(5).text());
+            String duration = trs.get(1).text();
+            String location = trs.get(2).text();
+            String actors = trs.get(3).text();
+            String playtimeText = trs.get(5).text().split("분")[0];
+            int playtime = Integer.parseInt(playtimeText);
+            String bookingSite = detailList.select("p > a").attr("href");
 
-            Elements a = detailList.select("p > a");
-            c.bookingSite(a.attr("href"));
+            // Build
+
 
 
         } catch (IOException e) {
