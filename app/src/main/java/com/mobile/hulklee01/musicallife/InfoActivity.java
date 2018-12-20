@@ -41,7 +41,7 @@ public class InfoActivity extends AppCompatActivity {
         int id = intent.getIntExtra("id");
         String title = helper.getTitle(id);
         reservepath = helper.getBookingSite(id);
-        morepath = helper.?;
+        //morepath = helper.?;
         String date = helper.getDuration(id);
         String place = helper.getLocation(id);
         String content = helper.getInformation(id);
