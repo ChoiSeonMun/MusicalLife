@@ -68,7 +68,6 @@
         android:layout_marginRight="3dp"
         android:layout_weight="1"
         android:focusable="false"
-        android:onClick="musicalSub"
         android:textOff="Sub"
         android:textOn="UnSub" />
 
