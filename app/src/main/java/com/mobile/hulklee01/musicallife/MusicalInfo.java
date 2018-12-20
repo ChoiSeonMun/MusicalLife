@@ -10,5 +10,4 @@ public class MusicalInfo {
     public String Rating;
     public String BookingSite;
     public String Information;
-    public boolean bSubscribe;
 }

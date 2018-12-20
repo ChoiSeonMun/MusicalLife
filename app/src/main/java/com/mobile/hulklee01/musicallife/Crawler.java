@@ -145,7 +145,6 @@ public class Crawler {
             info.Rating = rating;
             info.BookingSite = bookingSite;
             info.Information = information;
-            info.bSubscribe = false;
 
         } catch (IOException e) {
             e.printStackTrace();
