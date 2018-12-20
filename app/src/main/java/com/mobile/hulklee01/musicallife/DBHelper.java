@@ -55,12 +55,12 @@ public class DBHelper {
         mDB.close();
     }
 
-    public long insertColumn(String img, String title, String location, String date, String actor, String information, String bookingSite, int subsbcribe){
+    public long insertColumn(String img, String title, String location, String duration, String actor, String information, String bookingSite, int subsbcribe){
         ContentValues values = new ContentValues();
         values.put(MusicalDB.CreateDB.IMAGE, img);
         values.put(MusicalDB.CreateDB.TITLE, title);
         values.put(MusicalDB.CreateDB.LOCATION, location);
-        values.put(MusicalDB.CreateDB.DATE, date);
+        values.put(MusicalDB.CreateDB.DURATION, duration);
         values.put(MusicalDB.CreateDB.ACTOR, actor);
         values.put(MusicalDB.CreateDB.INFORMATION, information);
         values.put(MusicalDB.CreateDB.BOOKINGSITE, bookingSite);
@@ -96,10 +96,10 @@ public class DBHelper {
        return location;
    }
 
-   public String getDate(long id){
-       Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"date"},null,null,null,null,null);
-       String date = c.getColumnName((int) id);
-       return date;
+   public String getDuration(long id){
+       Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"duration"},null,null,null,null,null);
+       String duration = c.getColumnName((int) id);
+       return duration;
    }
 
    public String getActor(long id){
