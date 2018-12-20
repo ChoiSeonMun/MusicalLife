@@ -1,6 +1,8 @@
 package com.mobile.hulklee01.musicallife;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +24,10 @@ public class InfoActivity extends AppCompatActivity {
     String reservepath;
     //상세정보 사이트 경로
     String morepath;
+    //DB
+    SQLiteDatabase db;
+    String dbName = "TestDB";
+    String tableName = "TestTable";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,7 @@ public class InfoActivity extends AppCompatActivity {
         String title =intent.getStringExtra("title");
         String place = intent.getStringExtra("place");
 
+
         mtitleinfo = (TextView)findViewById(R.id.title_info);
         mtitleinfo.setText(title);
 
@@ -48,7 +55,7 @@ public class InfoActivity extends AppCompatActivity {
                 "\n출연 : 김땡땡, 최땡땡");
 
         mTextInfo = (TextView)findViewById(R.id.textview_info);
-        mTextInfo.setText("내용");
+        mTextInfo.setText("Test\nTest\nTest\ntest\nt\nz\nz\nx\nx\nd\ne\ng\nh\nbv\n2\nd\ne\nf\nmdffd\nl\n\n\n\n\nffg\n");
     }
 
     public void onClick(View v){
@@ -67,7 +74,7 @@ public class InfoActivity extends AppCompatActivity {
                 break;
         }
     }
-
+    //구독
     public void SubClick(View view) {
         boolean on = ((ToggleButton) view).isChecked();
         if (on) {
@@ -78,4 +85,6 @@ public class InfoActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }
