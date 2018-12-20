@@ -44,6 +44,8 @@ public class InfoActivity extends AppCompatActivity {
         String title =intent.getStringExtra("title");
         String place = intent.getStringExtra("place");
 
+        mImgInfo = (ImageView) findViewById(R.id.image_info);
+        GlideApp.with(this).load(imgpath).into(mImgInfo);
 
         mtitleinfo = (TextView)findViewById(R.id.title_info);
         mtitleinfo.setText(title);
