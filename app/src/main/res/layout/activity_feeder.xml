@@ -68,7 +68,7 @@
         android:layout_marginRight="3dp"
         android:layout_weight="1"
         android:focusable="false"
-        android:text="일정 추가"
+        android:text="일정 추가하기"
         android:onClick="onClickAdd"/>
 
 </LinearLayout>

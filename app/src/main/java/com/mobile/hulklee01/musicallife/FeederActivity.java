@@ -1,7 +1,12 @@
 package com.mobile.hulklee01.musicallife;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.provider.CalendarContract;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,10 +28,15 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class FeederActivity extends AppCompatActivity {
+    private final String TAG = "FeederActivity";
+    private final int ADDED = 1;
+
     private FeederListViewAdapter mAdapter;
     private Crawler mCrawler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +76,35 @@ public class FeederActivity extends AppCompatActivity {
     }
 
     public void onClickAdd(View v) {
-        Toast.makeText(this, "Click", Toast.LENGTH_SHORT).show();
+        // 해당 뮤지컬 가져오기
+        int position = (Integer) v.getTag();
+        MusicalInfo musicalInfo = ListManager.getList().get(position);
+
+        // 날짜 구하기
+        String[] dates = musicalInfo.Duration.split("~");
+        String[] startDate = dates[0].trim().split("/");
+        String[] endDate = dates[1].trim().split("/");
+
+        // 날짜 설정하기
+        Calendar start = Calendar.getInstance();
+        Calendar end = Calendar.getInstance();
+        setTime(start, startDate);
+        setTime(end, endDate);
+
+        // 구글 캘린더에 날짜 추가하기
+        Intent intent = new Intent(Intent.ACTION_INSERT)
+                .setData(CalendarContract.Events.CONTENT_URI)
+                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, start.getTimeInMillis())
+                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, end.getTimeInMillis())
+                .putExtra(CalendarContract.Events.TITLE, musicalInfo.Title)
+                .putExtra(CalendarContract.Events.EVENT_LOCATION, musicalInfo.Location);
+        startActivity(intent);
+    }
+
+    private void setTime(Calendar time, String[] date) {
+        int year = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int day = Integer.parseInt(date[2]);
+        time.set(year, month, day);
     }
 }
