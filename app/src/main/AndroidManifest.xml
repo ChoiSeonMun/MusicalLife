@@ -12,12 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FeederActivity"/>
         <activity android:name=".InfoActivity" />
-
-        <service
-            android:name=".CrawlingService"
-            android:exported="false" />
 
         <activity android:name=".ContainerActivity">
             <intent-filter>
