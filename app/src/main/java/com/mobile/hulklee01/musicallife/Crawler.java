@@ -73,6 +73,12 @@ public class Crawler {
 
     private class CrawlingTask extends AsyncTask<MusicalInfo, Integer, Long> {
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // 시작
+        }
+
+        @Override
         protected Long doInBackground(MusicalInfo... musicalInfos) {
             for (; mListIdx < musicalInfos.length; ++mListIdx) {
                 MusicalInfo info = musicalInfos[mListIdx];
@@ -89,6 +95,7 @@ public class Crawler {
 
         @Override
         protected void onPostExecute(Long aLong) {
+            // 끝
             super.onPostExecute(aLong);
         }
     }
