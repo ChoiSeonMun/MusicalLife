@@ -2,12 +2,14 @@ package com.mobile.hulklee01.musicallife;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ public class CalendarListViewAdapter extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final Context context = parent.getContext();
-
+        CalendarListViewItem item = new CalendarListViewItem();
         // "listview_item" layout을 inflate하여 convertView 참조 획득
         if(convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,16 +43,17 @@ public class CalendarListViewAdapter extends ArrayAdapter {
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        //CalendarRectangleView rect = (CalendarRectangleView) convertView.findViewById(R.id.view_rect);
+        ImageView circleImage = (ImageView) convertView.findViewById(R.id.ImageView_circle);
         TextView titleTextView = (TextView) convertView.findViewById(R.id.textView_title);
         TextView placeTextView = (TextView) convertView.findViewById(R.id.textView_place);
         TextView dateTextView = (TextView) convertView.findViewById(R.id.textView_date);
+        GradientDrawable circleColor = (GradientDrawable) circleImage.getBackground();
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         CalendarListViewItem calendarListViewItem = calendarList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-
+        circleColor.setColor(calendarListViewItem.getColor());
         titleTextView.setText(calendarListViewItem.getTitle());
         placeTextView.setText(calendarListViewItem.getPlace());
         dateTextView.setText(calendarListViewItem.getDate());
@@ -74,16 +77,11 @@ public class CalendarListViewAdapter extends ArrayAdapter {
     public void addItem(int color, String title, String location, String date) {
         CalendarListViewItem item = new CalendarListViewItem();
 
-        if(color == 0)
-            item.setColor(Color.GREEN);
-        else if(color == 1)
-            item.setColor(Color.CYAN);
-        else if(color == 2)
-            item.setColor(Color.GRAY);
-        else if(color == 3)
-            item.setColor(Color.BLUE);
-        else if(color == 4)
-            item.setColor(Color.RED);
+        if(color == 0) item.setColor(Color.GREEN);
+        else if(color == 1) item.setColor(Color.CYAN);
+        else if(color == 2) item.setColor(Color.MAGENTA);
+        else if(color == 3) item.setColor(Color.BLUE);
+        else if(color == 4) item.setColor(Color.RED);
 
         item.setTitle(title);
         item.setPlace(location);
