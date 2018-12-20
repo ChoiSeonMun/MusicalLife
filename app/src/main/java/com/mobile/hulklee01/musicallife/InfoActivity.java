@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.bumptech.glide.Glide;
+
 public class InfoActivity extends AppCompatActivity {
     //변수
     TextView mtitleinfo;
@@ -19,43 +21,49 @@ public class InfoActivity extends AppCompatActivity {
     TextView mTextSimple;
     TextView mTextInfo;
     //이미지 경로
-    String imgpath = "img";
+    String imgpath;
     //예매 사이트 경로
     String reservepath;
     //상세정보 사이트 경로
     String morepath;
     //DB
     SQLiteDatabase db;
-    String dbName = "TestDB";
-    String tableName = "TestTable";
+    MusicalDBHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        reservepath = "http://ticket.interpark.com/Ticket/Goods/GoodsInfo.asp?GoodsCode=18012338";
-        morepath = "http://www.playdb.co.kr/playdb/playdbDetail.asp?sReqPlayno=131089";
-
-
+        //값 받아오기
         Intent intent = getIntent();
 
-        String date = intent.getStringExtra("date");
-        String title =intent.getStringExtra("title");
-        String place = intent.getStringExtra("place");
+        int id = intent.getIntExtra("id");
+        String title = helper.getTitle(id);
+        reservepath = helper.getBookingSite(id);
+        //morepath = helper.?;
+        String date = helper.getDuration(id);
+        String place = helper.getLocation(id);
+        String content = helper.getInformation(id);
 
+        //이미지
+        imgpath = helper.getImageLink(id);
+        mImgInfo = (ImageView) findViewById(R.id.image_info);
+        Glide.with(this).load(imgpath).into(mImgInfo);
 
+        //타이틀
         mtitleinfo = (TextView)findViewById(R.id.title_info);
         mtitleinfo.setText(title);
 
+        //간단한 내용
         mTextSimple = (TextView)findViewById(R.id.textview_simpleinfo);
         mTextSimple.setText(
                 "\n일시 : " + date +
-                "\n장소 : " + place +
-                "\n출연 : 김땡땡, 최땡땡");
+                "\n장소\n : " + place);
 
+        //세부내용
         mTextInfo = (TextView)findViewById(R.id.textview_info);
-        mTextInfo.setText("Test\nTest\nTest\ntest\nt\nz\nz\nx\nx\nd\ne\ng\nh\nbv\n2\nd\ne\nf\nmdffd\nl\n\n\n\n\nffg\n");
+        mTextInfo.setText(content);
     }
 
     public void onClick(View v){
