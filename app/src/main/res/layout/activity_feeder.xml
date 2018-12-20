@@ -59,8 +59,8 @@
 
     </LinearLayout>
 
-    <ToggleButton
-        android:id="@+id/musical_subscribe_button"
+    <Button
+        android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
@@ -68,7 +68,7 @@
         android:layout_marginRight="3dp"
         android:layout_weight="1"
         android:focusable="false"
-        android:textOff="Sub"
-        android:textOn="UnSub" />
+        android:text="일정 추가"
+        android:onClick="onClickAdd"/>
 
 </LinearLayout>
