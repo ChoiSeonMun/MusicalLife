@@ -3,7 +3,6 @@ package com.mobile.hulklee01.musicallife;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.webkit.URLUtil;
-import android.widget.ArrayAdapter;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,13 +17,14 @@ public class Crawler {
     private final String PLAYDB_DETAIL_URL = "http://www.playdb.co.kr/playdb/playdbDetail.asp?sReqPlayno=";
     private int mListIdx = 0;
     private int mPage = 1;
-    private ArrayList<MusicalInfo> mInfos = ListManager.getList();
+    private ArrayList<MusicalInfo> mInfos = MusicalInfoListManager.getList();
     private final FeederListViewAdapter mAdapter;
 
     public Crawler(FeederListViewAdapter adapter) {
         mAdapter = adapter;
     }
 
+    // 페이지를 크롤링합니다.
     public void crawl() {
         Thread thread1 = new Thread(() -> {
             crawlPage();
@@ -40,7 +40,7 @@ public class Crawler {
     }
 
     private void crawlPage() {
-        // 페이지를 크롤링 해 각 뮤지컬들의 이름과 Url을 추출한다.
+        // 각 뮤지컬들의 이름과 Url을 추출한다.
         Document doc;
         Elements elements;
         try {
@@ -73,12 +73,6 @@ public class Crawler {
 
     private class CrawlingTask extends AsyncTask<MusicalInfo, Integer, Long> {
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // 시작
-        }
-
-        @Override
         protected Long doInBackground(MusicalInfo... musicalInfos) {
             for (; mListIdx < musicalInfos.length; ++mListIdx) {
                 MusicalInfo info = musicalInfos[mListIdx];
@@ -92,18 +86,12 @@ public class Crawler {
         protected void onProgressUpdate(Integer... values) {
             mAdapter.notifyDataSetChanged();
         }
-
-        @Override
-        protected void onPostExecute(Long aLong) {
-            // 끝
-            super.onPostExecute(aLong);
-        }
     }
 
     private void extractDetail(MusicalInfo info) {
         int trsLast = 0;
         try {
-            // 분석
+            // 데이터 추출
             String url = info.Url;
             String title = info.Title;
 

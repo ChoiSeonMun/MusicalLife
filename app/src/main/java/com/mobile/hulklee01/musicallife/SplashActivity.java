@@ -9,22 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    Context mContext;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_splash);
-            mContext = this;
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(mContext, FeederActivity.class);
-                    overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
-                    startActivity(intent);
-                    finish();
-                }
 
+            new Handler().postDelayed(() -> {
+                Intent intent = new Intent(getApplicationContext(), FeederActivity.class);
+                overridePendingTransition(R.anim.fade_out, R.anim.fade_in);
+                startActivity(intent);
+                finish();
             }, 2000);
 
         }

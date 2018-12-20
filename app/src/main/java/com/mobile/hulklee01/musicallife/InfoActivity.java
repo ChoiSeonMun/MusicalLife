@@ -1,7 +1,6 @@
 package com.mobile.hulklee01.musicallife;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class InfoActivity extends AppCompatActivity {
-    private ArrayList<MusicalInfo> mList = ListManager.getList();
+    private ArrayList<MusicalInfo> mList = MusicalInfoListManager.getList();
 
     MusicalInfo mMusicalInfo;
 
@@ -66,18 +65,4 @@ public class InfoActivity extends AppCompatActivity {
                 break;
         }
     }
-
-    //구독
-    public void SubClick(View view) {
-        boolean on = ((ToggleButton) view).isChecked();
-        if (on) {
-            Toast.makeText(getApplicationContext(), "Sub",
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "unSub",
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
-
-
 }
