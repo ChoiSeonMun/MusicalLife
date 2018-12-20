@@ -2,7 +2,6 @@ package com.mobile.hulklee01.musicallife;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,18 +23,19 @@ public class CrawlingService extends IntentService {
     private final String PLAYDB_URL = "http://www.playdb.co.kr/playdb/playdblist.asp?Page=";
     private final String PLAYDB_DETAIL_URL = "http://www.playdb.co.kr/playdb/playdbDetail.asp?sReqPlayno=";
     private final String TAG = "ChoiSeonMun";
-    private DBHelper mDBHelper;
+    private MusicalDBHelper mDB;
     private static int Page = 0;
 
     public CrawlingService() {
         super("CrawlingService");
-
-        //mDBHelper = new DBHelper(getApplicationContext());
         ++Page;
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        mDB = new MusicalDBHelper(getApplicationContext());
+        mDB.open();
+
         // 페이지에서 Url을 따온다.
         Document doc;
         Elements elements;
@@ -76,17 +76,29 @@ public class CrawlingService extends IntentService {
 
             String duration = trs.get(1).text();
             String location = trs.get(2).text();
-            String actors = trs.get(3).text();
-            String playtimeText = trs.get(5).text().split("분")[0];
-            int playtime = Integer.parseInt(playtimeText);
+            //String playtimeText = trs.get(5).text().split("분")[0];
+            //int playtime = Integer.parseInt(playtimeText);
             String bookingSite = detailList.select("p > a").attr("href");
 
-            // Build
 
-
-
+            // Insert
+            //mDB.insert()
+            //        .title(title)
+            //        .image(image)
+            //        .duration(duration)
+            //        .location(location)
+            //        .actor(actors)
+            //        .playtime(playtime)
+            //        .bookingsite(bookingSite)
+            //        .information()
+            //        .subscribe(false)
+            //        .done();
+//
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        finally {
+            mDB.close();
         }
     }
 }
