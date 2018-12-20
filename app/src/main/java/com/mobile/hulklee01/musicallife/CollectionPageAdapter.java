@@ -8,13 +8,13 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 public class CollectionPageAdapter extends FragmentStatePagerAdapter {
     private Fragment mFeederFragment = new FeederFragment();
-    private Fragment mInfoFragment = new InfoFragment();
+    private Fragment mCalendarFragment = new CalendarFragment();
 
     public CollectionPageAdapter(FragmentManager fm) { super(fm); }
 
     @Override
     public Fragment getItem(int i) {
-        return (i == 0) ? mFeederFragment : mInfoFragment;
+        return (i == 0) ? mFeederFragment : mCalendarFragment;
     }
 
     @Override
