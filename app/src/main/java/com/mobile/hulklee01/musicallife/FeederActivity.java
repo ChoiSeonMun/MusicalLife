@@ -44,10 +44,10 @@ public class FeederActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        byte[] elizabeth = getByteArrayFromDrawable(getDrawable(R.drawable.elizabeth));
+        String elizabeth = "http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/18/09/0400011809_131089_0455.gif";
         //임의로 넣은 값
-        mDbOpenHelper.insertColumn(elizabeth, "엘리자벳", "블루스퀘어 인터파크홀(구 삼성전자홀)", "2018/11/17 ~ 2019/02/10","","","","",0);
-        // feederAdapter.addItem(ContextCompat.getDrawable(this, R.drawable.cuza), "태양의 서커스 - 쿠자", "잠실종합운동장 내 빅탑", "2018/11/03 ~ 2019/01/06");
+        mDbOpenHelper.insertColumn(elizabeth, "엘리자벳", "블루스퀘어 인터파크홀(구 삼성전자홀)", "2018/11/17 ~ 2019/02/10","","","",0);
+
         items = new ArrayList<>();
 
 

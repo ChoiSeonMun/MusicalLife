@@ -13,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import com.bumptech.glide.Glide;
+
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
@@ -62,10 +65,7 @@ public class FeederListViewAdapter extends ArrayAdapter {
         FeederListViewItem feederListViewItem = feederList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        byte[] image = feederListViewItem.getMusicalImage();
-        ByteArrayInputStream is = new ByteArrayInputStream(image);
-        Drawable drw = Drawable.createFromStream(is, "image");
-        musicalImageView.setImageDrawable(drw);
+        Glide.with(getContext()).load("http://ticketimage.interpark.com/PlayDictionary/DATA/PlayDic/PlayDicUpload/040001/18/09/0400011809_131089_0455.gif").into(musicalImageView);
         titleTextView.setText(feederListViewItem.getMusicalTitle());
         placeTextView.setText(feederListViewItem.getMusicalPlace());
         dateTextView.setText(feederListViewItem.getMusicalDate());

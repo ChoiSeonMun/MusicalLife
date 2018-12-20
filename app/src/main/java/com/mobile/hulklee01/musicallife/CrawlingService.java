@@ -2,11 +2,7 @@ package com.mobile.hulklee01.musicallife;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
