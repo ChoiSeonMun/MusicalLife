@@ -17,19 +17,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class ContainerActivity extends FragmentActivity {
 
     private CollectionPageAdapter mCollectionPageAdapter;
     ViewPager mViewPager;
+    FeederFragment mFeederFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_container);
-
-        // 크롤링 시작
-        Intent intent = new Intent(this, CrawlingService.class);
-        startService(intent);
 
         mCollectionPageAdapter = new CollectionPageAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -50,6 +49,8 @@ public class ContainerActivity extends FragmentActivity {
 
             }
         };
+
+
     }
 }
 

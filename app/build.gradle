@@ -51,3 +51,8 @@ android {
         google()
     }
 }
+
+dependencies {
+    implementation project(':jsoup-1.11.3')
+    implementation project(':library')
+}
