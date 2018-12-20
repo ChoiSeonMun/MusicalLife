@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class CrawledContent {
     private final String mUrl;
-    private final byte[] mImg;
+    private final String mImg;
     private final String mTitle;
     private final String mDuration;
     private final String mLocation;
@@ -14,7 +14,7 @@ public class CrawledContent {
     private final String mPlot;
     private final String mBookingSite;
 
-    private CrawledContent(String url, byte[] img, String title, String duration, String location, String actors, int playtime, String plot, String bookingSite) {
+    private CrawledContent(String url, String img, String title, String duration, String location, String actors, int playtime, String plot, String bookingSite) {
         this.mUrl = url;
         this.mImg = img;
         this.mTitle = title;
@@ -28,20 +28,20 @@ public class CrawledContent {
 
     public static class Builder {
         private String mUrl = "";
-        private byte[] mImg = null;
+        private String mImg = null;
         private String mTitle = "";
         private String mDuration = "";
         private String mLocation = "";
         private String mActors = "";
         private int mPlayTime = 0;
-        private String mPlot = "";
+        private String mInformation = "";
         private String mBookingSite = "";
 
         public Builder url(String u) {
             this.mUrl = u;
             return this;
         }
-        public Builder img(byte[] i) {
+        public Builder img(String i) {
             this.mImg = i;
             return this;
         }
@@ -79,8 +79,8 @@ public class CrawledContent {
             return this;
         }
 
-        public Builder plot(String p) {
-            this.mPlot = p;
+        public Builder information(String p) {
+            this.mInformation = p;
             return this;
         }
 
@@ -90,7 +90,7 @@ public class CrawledContent {
         }
 
         public CrawledContent build() {
-            return new CrawledContent(mUrl, mImg, mTitle, mDuration, mLocation, mActors, mPlayTime, mPlot, mBookingSite);
+            return new CrawledContent(mUrl, mImg, mTitle, mDuration, mLocation, mActors, mPlayTime, mInformation, mBookingSite);
         }
     }
 }

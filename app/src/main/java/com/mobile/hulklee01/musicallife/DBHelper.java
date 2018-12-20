@@ -55,19 +55,16 @@ public class DBHelper {
         mDB.close();
     }
 
-    public long insertColumn(byte[] img, String title, String location, String date, String actor, String plot, String detailInfo, String bookingSite, int subsbcribe){
-
-
+    public long insertColumn(String img, String title, String location, String date, String actor, String information, String bookingSite, int subsbcribe){
         ContentValues values = new ContentValues();
-        values.put(MusicalDB.CreateDB.IMAGE,img);
-        values.put(MusicalDB.CreateDB.TITLE,title);
-        values.put(MusicalDB.CreateDB.LOCATION,location);
-        values.put(MusicalDB.CreateDB.DATE,date);
-        values.put(MusicalDB.CreateDB.ACTOR,actor);
-        values.put(MusicalDB.CreateDB.PLOT,plot);
-        values.put(MusicalDB.CreateDB.DETAILINFO,detailInfo);
-        values.put(MusicalDB.CreateDB.BOOKINGSITE,bookingSite);
-        values.put(MusicalDB.CreateDB.SUBSCRIBE,subsbcribe);
+        values.put(MusicalDB.CreateDB.IMAGE, img);
+        values.put(MusicalDB.CreateDB.TITLE, title);
+        values.put(MusicalDB.CreateDB.LOCATION, location);
+        values.put(MusicalDB.CreateDB.DATE, date);
+        values.put(MusicalDB.CreateDB.ACTOR, actor);
+        values.put(MusicalDB.CreateDB.INFORMATION, information);
+        values.put(MusicalDB.CreateDB.BOOKINGSITE, bookingSite);
+        values.put(MusicalDB.CreateDB.SUBSCRIBE, subsbcribe);
         return mDB.insert(MusicalDB.CreateDB._TABLENAME,null,values);
     }
 
@@ -92,36 +89,36 @@ public class DBHelper {
         String title = c.getColumnName((int) id);
         return title;
    }
-    public String getLocation(long id){
-        Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"location"},null,null,null,null,null);
-        String location = c.getColumnName((int) id);
-        return location;
-    }
-    public String getDate(long id){
-        Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"date"},null,null,null,null,null);
-        String date = c.getColumnName((int) id);
-        return date;
-    }
-    public String getActor(long id){
-        Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"actor"},null,null,null,null,null);
-        String actor = c.getColumnName((int) id);
-        return actor;
-    }
-    public String getPlot(long id){
-        Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"plot"},null,null,null,null,null);
-        String plot = c.getColumnName((int) id);
-        return plot;
-    }
-    public String getDetailInfo(long id){
-        Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"detailInfo"},null,null,null,null,null);
-        String detailInfo = c.getColumnName((int) id);
-        return detailInfo;
-    }
-    public String getBookingSite(long id){
-        Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"bookingSite"},null,null,null,null,null);
-        String bookingSite = c.getColumnName((int) id);
-        return bookingSite;
-    }
+
+   public String getLocation(long id){
+       Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"location"},null,null,null,null,null);
+       String location = c.getColumnName((int) id);
+       return location;
+   }
+
+   public String getDate(long id){
+       Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"date"},null,null,null,null,null);
+       String date = c.getColumnName((int) id);
+       return date;
+   }
+
+   public String getActor(long id){
+       Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"actor"},null,null,null,null,null);
+       String actor = c.getColumnName((int) id);
+       return actor;
+   }
+
+   public String getInformation(long id){
+       Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"information"},null,null,null,null,null);
+       String information = c.getColumnName((int) id);
+       return information;
+   }
+
+   public String getBookingSite(long id){
+       Cursor c = mDB.query(MusicalDB.CreateDB._TABLENAME, new String[]{"bookingSite"},null,null,null,null,null);
+       String bookingSite = c.getColumnName((int) id);
+       return bookingSite;
+   }
 
 
 }
