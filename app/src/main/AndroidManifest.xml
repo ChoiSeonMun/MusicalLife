@@ -12,18 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FeederActivity">
+        <activity android:name=".FeederActivity"/>
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".CalendarActivity" />
+        <service
+            android:name=".CrawlingService"
+            android:exported="false" />
+
+        <activity android:name=".ContainerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".CalendarActivity" />
-        <service
-            android:name=".CrawlingService"
-            android:exported="false"></service>
     </application>
 
 </manifest>
